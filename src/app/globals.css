@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #0d0d0d;
+  --ink-soft: #171717;
+  --ivory: #f5f1e8;
+  --gold: #cdaa5a;
+  --gold-dark: #8c642b;
+  --sky: #75aadb;
+  --sky-light: #b9dcf3;
+  --blue-deep: #2e5d8a;
+  --argentina-blue: var(--sky);
+  --argentina-white: var(--ivory);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--ink);
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--ink);
+  color: var(--ivory);
+  font-family: "Montserrat", Arial, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--sky);
+  color: var(--ink);
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.text-pretty {
+  text-wrap: pretty;
+}
+
+.argentina-text {
+  color: var(--argentina-blue);
+}
+
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .argentina-text {
+    background-image: linear-gradient(
+      to bottom,
+      var(--argentina-blue) 0%,
+      var(--argentina-blue) 31%,
+      var(--argentina-white) 31%,
+      var(--argentina-white) 69%,
+      var(--argentina-blue) 69%,
+      var(--argentina-blue) 100%
+    );
+    background-clip: text;
+    color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.argentina-banner {
+  background: linear-gradient(
+    to bottom,
+    var(--argentina-blue) 0%,
+    var(--argentina-blue) 38%,
+    var(--argentina-white) 38%,
+    var(--argentina-white) 62%,
+    var(--argentina-blue) 62%,
+    var(--argentina-blue) 100%
+  );
+}
+
+.argentina-banner-pattern {
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 10px,
+    var(--ink) 10px,
+    var(--ink) 11px
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 38%,
+    transparent 38%,
+    transparent 62%,
+    #000 62%,
+    #000 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 38%,
+    transparent 38%,
+    transparent 62%,
+    #000 62%,
+    #000 100%
+  );
+}
+
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  position: absolute;
+  right: 0;
+  bottom: 0.3rem;
+  left: 0;
+  height: 1px;
+  content: "";
+  background: var(--sky);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 180ms ease;
+}
+
+.link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
