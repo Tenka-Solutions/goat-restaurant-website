@@ -1,13 +1,8 @@
 import type { MetadataRoute } from "next";
-import { siteConfig } from "@/content/site-content";
+import { siteConfig } from "@/config/site";
+import { routes } from "@/i18n/routing";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: siteConfig.siteUrl,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 1,
-    },
-  ];
+  const paths = [routes.home.en, routes.home.es, routes.menu.en, routes.menu.es, routes.promotions.en, routes.promotions.es];
+  return paths.map((path) => ({ url: `${siteConfig.siteUrl}${path}`, changeFrequency: path.includes("menu") ? "weekly" : "monthly", priority: path === "/en" ? 1 : 0.8 }));
 }

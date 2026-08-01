@@ -1,62 +1,24 @@
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
 import "@fontsource/bebas-neue/400.css";
 import "@fontsource/montserrat/400.css";
 import "@fontsource/montserrat/600.css";
 import "@fontsource/montserrat/700.css";
 import "./globals.css";
-import { siteConfig } from "@/content/site-content";
+import { siteConfig } from "@/config/site";
+import { isLocale } from "@/i18n/routing";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
-  title: {
-    default: siteConfig.fullName,
-    template: `%s | ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    type: "website",
-    locale: siteConfig.locale,
-    url: "/",
-    siteName: siteConfig.fullName,
-    title: siteConfig.fullName,
-    description: siteConfig.description,
-    images: [
-      {
-        url: "/images/hero-grill.png",
-        width: 1792,
-        height: 1024,
-        alt: "Parrilla de G.O.A.T. Argentine Grill & Bakery",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteConfig.fullName,
-    description: siteConfig.description,
-    images: ["/images/hero-grill.png"],
-  },
-  icons: {
-    icon: "/icon.svg",
-  },
+  title: { default: siteConfig.fullName, template: `%s | ${siteConfig.name}` },
+  icons: { icon: "/icon.svg" },
+  twitter: { card: "summary_large_image" },
 };
 
-export const viewport: Viewport = {
-  themeColor: "#0D0D0D",
-  width: "device-width",
-  initialScale: 1,
-};
+export const viewport: Viewport = { themeColor: "#0D0D0D", width: "device-width", initialScale: 1 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="es" className="scroll-smooth">
-      <body>{children}</body>
-    </html>
-  );
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const localeHeader = (await headers()).get("x-goat-locale") ?? "en";
+  const locale = isLocale(localeHeader) ? localeHeader : "en";
+  return <html lang={locale} className="scroll-smooth"><body>{children}</body></html>;
 }

@@ -1,43 +1,41 @@
-import { navigation, siteConfig } from "@/content/site-content";
+import Link from "next/link";
 import { BrandMark } from "@/components/ui/brand-mark";
+import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { MobileMenu } from "@/components/layout/mobile-menu";
+import { siteConfig } from "@/config/site";
+import { getDictionary } from "@/content/dictionaries";
+import { localizedPath } from "@/i18n/routing";
+import type { Locale } from "@/types/site";
 
-export function Header() {
+export function Header({ locale }: { locale: Locale }) {
+  const copy = getDictionary(locale);
+  const home = localizedPath(locale, "home");
+  const items = [
+    { label: copy.navigation.essence, href: `${home}#essence` },
+    { label: copy.navigation.menu, href: localizedPath(locale, "menu") },
+    { label: copy.navigation.bakery, href: `${localizedPath(locale, "menu")}#bakery` },
+    { label: copy.navigation.promotions, href: localizedPath(locale, "promotions") },
+    { label: copy.navigation.experience, href: `${home}#experience` },
+    { label: copy.navigation.visit, href: `${home}#visit` },
+  ];
+  const cta = { label: copy.reservation, href: siteConfig.reservationUrl || `${home}#contact` };
+
   return (
-    <header className="absolute inset-x-0 top-0 z-30 border-b border-ivory/10">
+    <header className="relative z-30 border-b border-ivory/10 bg-ink/95">
       <div className="mx-auto flex h-20 max-w-[90rem] items-center justify-between px-5 sm:px-8 lg:h-24 lg:px-12">
-        <a
-          href="#inicio"
-          className="rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky"
-        >
+        <Link href={home} className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky">
           <BrandMark inverse />
-        </a>
-
-        <nav className="hidden lg:block" aria-label="Navegación principal">
-          <ul className="flex items-center gap-7 lg:gap-10">
-            {navigation.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  className="link-underline py-3 text-[0.67rem] font-semibold uppercase tracking-[0.18em] text-ivory/75 transition-colors hover:text-ivory focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
+        </Link>
+        <nav className="hidden xl:block" aria-label={copy.navigation.label}>
+          <ul className="flex items-center gap-5 xl:gap-7">
+            {items.map((entry) => <li key={entry.href}><Link className="link-underline py-3 text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-ivory/75 hover:text-ivory xl:text-[0.65rem]" href={entry.href}>{entry.label}</Link></li>)}
           </ul>
         </nav>
-
-        <div className="hidden lg:block">
-          <a
-            href={siteConfig.reservationCta.href}
-            className="inline-flex min-h-11 items-center whitespace-nowrap border border-sky/80 px-4 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-sky-light transition-colors hover:bg-sky hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky lg:px-5 lg:text-[0.65rem] lg:tracking-[0.18em]"
-          >
-            {siteConfig.reservationCta.label}
-          </a>
+        <div className="hidden items-center gap-5 xl:flex">
+          <LanguageSwitcher locale={locale} />
+          <Link href={cta.href} className="inline-flex min-h-11 items-center border border-sky/80 px-4 text-[0.6rem] font-bold uppercase tracking-[0.14em] text-sky-light hover:bg-sky hover:text-ink">{cta.label}</Link>
         </div>
-
-        <MobileMenu />
+        <MobileMenu locale={locale} items={items} cta={cta} labels={{ open: copy.navigation.open, close: copy.navigation.close, nav: copy.navigation.label }} />
       </div>
     </header>
   );

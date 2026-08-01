@@ -1,0 +1,14 @@
+import { MenuHeader } from "@/components/menu-header";
+import { getDictionary } from "@/content/dictionaries";
+import { menuCategories } from "@/content/menu";
+import type { Locale } from "@/types/site";
+
+export function MenuPage({ locale }: { locale: Locale }) {
+  const copy = getDictionary(locale).menu;
+  return <main id="content" className="bg-ink text-ivory">
+    <MenuHeader locale={locale} />
+    <nav className="sticky top-0 z-20 border-b border-ivory/10 bg-ink/95 px-5 py-4 backdrop-blur" aria-label={locale === "en" ? "Menu areas" : "Áreas de la carta"}><div className="mx-auto flex max-w-7xl gap-7"><a className="text-xs font-bold uppercase tracking-[.18em] text-sky underline underline-offset-8" href="#restaurant">{copy.restaurant}</a><a className="text-xs font-bold uppercase tracking-[.18em] text-ivory/60 hover:text-ivory" href="#bakery">{copy.bakery}</a></div></nav>
+    <section id="restaurant" className="scroll-mt-20 px-5 py-16 sm:px-8 lg:px-12"><div className="mx-auto max-w-7xl"><p className="mb-8 text-sm text-gold">✦ {copy.provisional}</p><nav aria-label={copy.index} className="border-y border-ivory/10 py-5"><p className="mb-3 text-[.62rem] font-bold uppercase tracking-[.2em] text-ivory/40">{copy.index}</p><div className="flex gap-x-5 gap-y-3 overflow-x-auto pb-2 [scrollbar-width:thin]">{menuCategories.map((category) => <a className="shrink-0 text-xs font-semibold text-sky-light hover:text-sky" href={`#${category.id}`} key={category.id}>{category.title[locale]}</a>)}</div></nav><div className="mt-8 grid gap-x-16 lg:grid-cols-2">{menuCategories.map((category) => <section id={category.id} key={category.id} className="scroll-mt-24 border-b border-ivory/10 py-12"><h2 className="font-display text-5xl tracking-wide text-gold">{category.title[locale]}</h2>{category.description && <p className="mt-2 text-sm leading-6 text-ivory/50">{category.description[locale]}</p>}<ul className="mt-7 space-y-7">{category.items.filter((entry) => entry.available !== false).map((entry) => <li key={entry.id}><div className="flex items-start gap-4"><h3 className="min-w-0 flex-1 text-sm font-bold uppercase tracking-[.06em]">{entry.name[locale]}{entry.provisional && <span className="ml-1 text-gold" title={copy.provisional}>✦</span>}</h3>{entry.price && <span className="shrink-0 font-semibold tabular-nums text-sky-light">{entry.price}</span>}</div>{entry.description && <p className="mt-2 max-w-xl text-sm leading-6 text-ivory/55">{entry.description[locale]}</p>}</li>)}</ul></section>)}</div></div></section>
+    <section id="bakery" className="scroll-mt-20 border-t border-gold/30 bg-ivory px-5 py-24 text-ink sm:px-8 lg:px-12"><div className="mx-auto max-w-7xl"><p className="text-xs font-bold uppercase tracking-[.22em] text-blue-deep">{copy.bakery}</p><h2 className="mt-4 font-display text-6xl">{copy.bakeryTitle}</h2><p className="mt-5 max-w-2xl text-base leading-7 text-ink/65">{copy.bakeryBody}</p></div></section>
+  </main>;
+}

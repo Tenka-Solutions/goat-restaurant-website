@@ -43,12 +43,33 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
+:focus-visible {
+  outline: 2px solid var(--sky);
+  outline-offset: 4px;
+}
+
 .text-balance {
   text-wrap: balance;
 }
 
 .text-pretty {
   text-wrap: pretty;
+}
+
+@media (max-width: 374px) {
+  #top h1 {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 420px) {
+  #top h1,
+  #content h1,
+  #content h2,
+  #content h3,
+  #content p {
+    overflow-wrap: anywhere;
+  }
 }
 
 .argentina-text {
