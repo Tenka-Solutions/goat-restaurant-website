@@ -6,6 +6,7 @@ import type { Locale } from "@/types/site";
 
 export function MenuHeader({ locale }: { locale: Locale }) {
   const copy = getDictionary(locale).menu;
+  const ordering = getDictionary(locale).ordering;
   const showDevelopmentNotice = process.env.NODE_ENV === "development" && siteConfig.isProvisionalUrl;
 
   return (
@@ -16,7 +17,9 @@ export function MenuHeader({ locale }: { locale: Locale }) {
           <p className="text-xs font-semibold uppercase tracking-[.25em] text-sky-light">{copy.eyebrow}</p>
           <h1 className="mt-4 font-display text-7xl leading-none sm:text-8xl">{copy.title}</h1>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-ivory/65">{copy.intro}</p>
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-6 text-ivory/65">{ordering.helper}</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <a href={siteConfig.cloverOrderingUrl} target="_blank" rel="noopener noreferrer" data-cta="clover-ordering" className="inline-flex min-h-11 items-center justify-center bg-sky px-5 text-xs font-bold uppercase tracking-[.15em] text-ink hover:bg-sky-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky">{ordering.cta}</a>
             <a href={siteConfig.menuPdfPath} target="_blank" className="inline-flex min-h-11 items-center justify-center bg-gold px-5 text-xs font-bold uppercase tracking-[.15em] text-ink">{copy.pdf}</a>
             <MenuActions share={copy.share} shared={copy.shared} />
           </div>

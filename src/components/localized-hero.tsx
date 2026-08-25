@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getDictionary } from "@/content/dictionaries";
+import { siteConfig } from "@/config/site";
 import { localizedPath } from "@/i18n/routing";
 import type { Locale } from "@/types/site";
 
@@ -25,7 +26,7 @@ export function LocalizedHero({ locale }: { locale: Locale }) {
         <p className="mt-6 max-w-xl text-base leading-7 text-ivory/72 sm:text-lg">{copy.description}</p>
         <div className="mt-9 flex flex-col gap-3 min-[420px]:flex-row">
           <Link href={localizedPath(locale, "menu")} className="inline-flex min-h-13 items-center justify-center bg-gold px-7 text-xs font-bold uppercase tracking-[.18em] text-ink hover:bg-ivory">{copy.primary}</Link>
-          <a href="#visit" className="inline-flex min-h-13 items-center justify-center border border-sky/75 px-7 text-xs font-bold uppercase tracking-[.18em] text-sky-light hover:bg-sky hover:text-ink">{copy.secondary}</a>
+          <a href={siteConfig.cloverOrderingUrl} target="_blank" rel="noopener noreferrer" data-cta="clover-ordering" className="inline-flex min-h-13 items-center justify-center border border-sky/75 px-7 text-xs font-bold uppercase tracking-[.18em] text-sky-light hover:bg-sky hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky">{copy.secondary}</a>
         </div>
       </div>
     </section>

@@ -10,7 +10,7 @@ export const siteConfig = {
   menuQrPath: "/qr/goat-menu-qr.png",
   menuPdfPath: "/menu/goat-menu.pdf",
   brandLogoPath: "/brand/goat-logo-transparent.png",
-  reservationUrl: process.env.NEXT_PUBLIC_RESERVATION_URL || null,
+  cloverOrderingUrl: "https://goat-argentine-grill-orem.cloveronline.com/",
 } as const;
 
 // TODO(client): Complete every null/empty value before launch.

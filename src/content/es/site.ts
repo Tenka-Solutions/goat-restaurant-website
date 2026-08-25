@@ -6,8 +6,11 @@ export const es = {
   localeName: "Español",
   skip: "Saltar al contenido",
   navigation: { label: "Navegación principal", open: "Abrir menú", close: "Cerrar menú", essence: "Esencia", menu: "Menú Restaurante", bakery: "Panadería", promotions: "Promociones y Eventos", experience: "Experiencia", visit: "Visítanos" },
-  reservation: "Reserva tu mesa",
-  hero: { eyebrow: "Argentine Grill & Bakery", title: [{ text: "El sabor", style: "default" }, { text: "argentino", style: "argentina" }, { text: "empieza en", style: "gold" }, { text: "el fuego.", style: "gold" }], description: "Parrilla, panadería y café hechos con tiempo, oficio y ese espíritu que convierte cada mesa en un encuentro.", primary: "Explora el menú", secondary: "Planifica tu visita" },
+  ordering: {
+    cta: "Pedir para retirar",
+    helper: "¿Listo para pedir? Completa tu pedido para retiro de forma segura a través de Clover.",
+  },
+  hero: { eyebrow: "Argentine Grill & Bakery", title: [{ text: "El sabor", style: "default" }, { text: "argentino", style: "argentina" }, { text: "empieza en", style: "gold" }, { text: "el fuego.", style: "gold" }], description: "Parrilla, panadería y café hechos con tiempo, oficio y ese espíritu que convierte cada mesa en un encuentro.", primary: "Explora el menú", secondary: "Pedir para retirar" },
   essence: { eyebrow: "Nuestra esencia", title: "Fuego, harina y tiempo.", body: "Celebramos una cocina honesta que nace de las brasas y continúa en el horno: cortes a la parrilla, empanadas, panes artesanales, café y mate para compartir.", quote: "La cocina no termina cuando sale el plato. Termina cuando la mesa se llena.", quoteBy: "Espíritu G.O.A.T. · Texto editorial pendiente de aprobación", pillars: [["Brasas", "Fuego real, tiempo preciso y sabores que hablan por sí solos."], ["Masa", "El oficio paciente de amasar, fermentar y hornear cada día."], ["Encuentro", "La mesa como lugar de pausa, conversación y comunidad."]] },
   flavours: { eyebrow: "Lo que nos mueve", title: "Sabores con historia.", body: "De las brasas al horno, una mesa argentina donde hay lugar para todos.", items: ["Parrilla", "Empanadas", "Panadería", "Café y mate"] },
   story: { eyebrow: "Una mesa para compartir", title: "Tradición argentina, servida a nuestra manera.", body: "G.O.A.T. reúne el carácter de la parrilla con la calidez de una panadería de barrio. Cada detalle invita a bajar el ritmo, comer bien y sentirse parte." },
