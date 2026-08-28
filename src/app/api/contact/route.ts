@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
   if (isRateLimited(ip)) return NextResponse.json({ code: "rate_limited" }, { status: 429 });
 
   const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_RECIPIENT_EMAIL;
+  const to = process.env.Info@goatargentinegrill.com;
   const from = process.env.CONTACT_FROM_EMAIL;
   if (!apiKey || !to || !from) return NextResponse.json({ code: "not_configured" }, { status: 503 });
 
