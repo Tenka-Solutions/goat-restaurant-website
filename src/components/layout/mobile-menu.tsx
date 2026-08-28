@@ -16,7 +16,7 @@ export function MobileMenu({ locale, items, cta, labels }: { locale: Locale; ite
     <div id="mobile-navigation" className={`fixed inset-0 z-40 flex flex-col overflow-y-auto bg-ink px-6 pb-8 pt-24 transition-[opacity,visibility] ${open ? "visible opacity-100" : "invisible opacity-0"}`}>
       <nav aria-label={labels.nav}><ul className="divide-y divide-ivory/10 border-y border-ivory/10">{items.map((entry) => <li key={entry.href}><Link className="block py-4 font-display text-3xl tracking-wide text-ivory hover:text-sky" href={entry.href} onClick={() => setOpen(false)}>{entry.label}</Link></li>)}</ul></nav>
       <div className="mt-6"><LanguageSwitcher locale={locale} /></div>
-      <Link className="mt-8 inline-flex min-h-12 items-center justify-center bg-sky px-6 text-xs font-bold uppercase tracking-[0.18em] text-ink" href={cta.href} onClick={() => setOpen(false)}>{cta.label}</Link>
+      <a className="mt-8 inline-flex min-h-12 items-center justify-center bg-sky px-6 text-xs font-bold uppercase tracking-[0.18em] text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ivory" href={cta.href} target="_blank" rel="noopener noreferrer" data-cta="clover-ordering" onClick={() => setOpen(false)}>{cta.label}</a>
     </div>
   </div>;
 }

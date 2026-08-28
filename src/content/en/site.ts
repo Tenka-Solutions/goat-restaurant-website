@@ -12,7 +12,10 @@ export const en = {
     experience: "Experience",
     visit: "Visit Us",
   },
-  reservation: "Reserve Your Table",
+  ordering: {
+    cta: "Order for Pickup",
+    helper: "Ready to order? Complete your pickup order securely through Clover.",
+  },
   hero: {
     eyebrow: "Argentine Grill & Bakery",
     title: [
@@ -23,12 +26,12 @@ export const en = {
     ],
     description: "Grill, bakery and coffee made with time, craft and the spirit that turns every table into a gathering.",
     primary: "Explore our menu",
-    secondary: "Plan your visit",
+    secondary: "Order for Pickup",
   },
   essence: {
     eyebrow: "Our essence",
     title: "Fire, flour and time.",
-    body: "We celebrate honest cooking that begins over the coals and continues in the oven — grilled cuts, empanadas, artisan bread, coffee and mate made for sharing.",
+    body: "We celebrate honest cooking that begins over the coals and continues in the oven - grilled cuts, empanadas, artisan bread, coffee and mate made for sharing.",
     quote: "Cooking does not end when the plate leaves the kitchen. It ends when the table fills up.",
     quoteBy: "G.O.A.T. spirit · Editorial copy pending approval",
     pillars: [

@@ -18,7 +18,7 @@ export function Header({ locale }: { locale: Locale }) {
     { label: copy.navigation.experience, href: `${home}#experience` },
     { label: copy.navigation.visit, href: `${home}#visit` },
   ];
-  const cta = { label: copy.reservation, href: siteConfig.reservationUrl || `${home}#contact` };
+  const cta = { label: copy.ordering.cta, href: siteConfig.cloverOrderingUrl };
 
   return (
     <header className="relative z-30 border-b border-ivory/10 bg-ink/95">
@@ -33,7 +33,7 @@ export function Header({ locale }: { locale: Locale }) {
         </nav>
         <div className="hidden items-center gap-5 xl:flex">
           <LanguageSwitcher locale={locale} />
-          <Link href={cta.href} className="inline-flex min-h-11 items-center border border-sky/80 px-4 text-[0.6rem] font-bold uppercase tracking-[0.14em] text-sky-light hover:bg-sky hover:text-ink">{cta.label}</Link>
+          <a href={cta.href} target="_blank" rel="noopener noreferrer" data-cta="clover-ordering" className="inline-flex min-h-11 items-center border border-sky/80 px-4 text-[0.6rem] font-bold uppercase tracking-[0.14em] text-sky-light hover:bg-sky hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky">{cta.label}</a>
         </div>
         <MobileMenu locale={locale} items={items} cta={cta} labels={{ open: copy.navigation.open, close: copy.navigation.close, nav: copy.navigation.label }} />
       </div>

@@ -5,12 +5,12 @@ const configuredUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
 export const siteConfig = {
   name: "G.O.A.T.",
   fullName: "G.O.A.T. Argentine Grill & Bakery",
-  siteUrl: configuredUrl || "https://example.com",
+  siteUrl: configuredUrl || "https://goatrestaurantsutah.com",
   isProvisionalUrl: !configuredUrl,
   menuQrPath: "/qr/goat-menu-qr.png",
   menuPdfPath: "/menu/goat-menu.pdf",
   brandLogoPath: "/brand/goat-logo-transparent.png",
-  reservationUrl: process.env.NEXT_PUBLIC_RESERVATION_URL || null,
+  cloverOrderingUrl: "https://goat-argentine-grill-orem.cloveronline.com/",
 } as const;
 
 // TODO(client): Complete every null/empty value before launch.
