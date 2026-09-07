@@ -78,7 +78,7 @@ The in-memory limit is per runtime instance; high-traffic or multi-region deploy
 
 The official circular source is kept at `docs/brand-source/goat-logo.png`. It is a 1024×1024 RGBA PNG with real transparency, so it was copied without pixel changes to `public/brand/goat-logo-transparent.png`; matching SHA-256 hashes confirm that the public asset is byte-identical to the client source. Next.js optimizes delivery through `next/image`.
 
-The logo is used as the primary mark above the localized menu title and as a discreet 80 px footer mark. The compact textual wordmark remains in the navbar to preserve its approved height. The existing simplified favicon remains in use because the detailed circular artwork and fine lettering do not reproduce reliably at small favicon sizes. Replace the source and public files together if the client later supplies a final SVG or revised transparent PNG, keeping the same square proportions and transparent exterior.
+The logo is used in the navbar, as the primary mark above the localized menu title and as a discreet 80 px footer mark. The existing simplified favicon remains in use because the detailed circular artwork and fine lettering do not reproduce reliably at small favicon sizes. Replace the source and public files together if a final SVG or revised transparent PNG becomes available, keeping the same square proportions and transparent exterior.
 
 ## QR generation
 
@@ -89,7 +89,7 @@ $env:NEXT_PUBLIC_SITE_URL='https://your-real-domain.example'
 npm run qr:generate
 ```
 
-This encodes `NEXT_PUBLIC_SITE_URL + /menu`. The committed provisional files encode `https://example.com/menu` and **must be regenerated before launch or print**. The provisional URL is never rendered in the production interface; development shows a local-only warning. Prefer SVG for print, preserve the quiet zone, print at least 25 mm wide, avoid distortion, and test the final physical proof on multiple phones.
+This encodes `NEXT_PUBLIC_SITE_URL + /menu`. The committed files encode `https://goatrestaurantsutah.com/menu`. Regenerate them whenever the public site URL changes. Prefer SVG for print, preserve the quiet zone, print at least 25 mm wide, avoid distortion, and test the final physical proof on multiple phones.
 
 ## Validation
 
