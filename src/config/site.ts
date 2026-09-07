@@ -6,14 +6,12 @@ export const siteConfig = {
   name: "G.O.A.T.",
   fullName: "G.O.A.T. Argentine Grill & Bakery",
   siteUrl: configuredUrl || "https://goatrestaurantsutah.com",
-  isProvisionalUrl: !configuredUrl,
   menuQrPath: "/qr/goat-menu-qr.png",
   menuPdfPath: "/menu/goat-menu.pdf",
   brandLogoPath: "/brand/goat-logo-transparent.png",
   cloverOrderingUrl: "https://goat-argentine-grill-orem.cloveronline.com/",
 } as const;
 
-// TODO(client): Complete every null/empty value before launch.
 export const businessDetails: BusinessDetails = {
   address: "845 North 100 West, Suite 104, Orem, UT 84057",
   phone: "(801) 548-7910",

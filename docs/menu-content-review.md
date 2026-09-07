@@ -49,4 +49,4 @@ The website preserves prices as strings and marks draft translations with `provi
 
 ## Translation status
 
-All English menu translations are working drafts derived from the Spanish PDF, not client-approved commercial copy. Items marked with `provisional: true` in `src/content/menu.ts` display a visible marker. The client should approve culinary terminology, descriptions and prices before launch.
+All English menu translations are working drafts derived from the Spanish PDF, not client-approved commercial copy. Items marked with `provisional: true` in `src/content/menu.ts` retain that status for internal review without displaying it to visitors. Culinary terminology, descriptions and prices should be reviewed before launch.

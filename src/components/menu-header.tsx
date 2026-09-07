@@ -7,7 +7,6 @@ import type { Locale } from "@/types/site";
 export function MenuHeader({ locale }: { locale: Locale }) {
   const copy = getDictionary(locale).menu;
   const ordering = getDictionary(locale).ordering;
-  const showDevelopmentNotice = process.env.NODE_ENV === "development" && siteConfig.isProvisionalUrl;
 
   return (
     <header id="top" className="border-b border-ivory/10 px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
@@ -29,7 +28,6 @@ export function MenuHeader({ locale }: { locale: Locale }) {
           <figcaption className="mt-4">
             <strong className="block font-display text-2xl tracking-wide">{copy.qrTitle}</strong>
             <span className="mt-1 block text-xs leading-5 text-ink/60">{copy.qrBody}</span>
-            {showDevelopmentNotice && <span className="mt-2 block text-[.65rem] leading-4 text-red-800">{copy.qrDevelopment}</span>}
           </figcaption>
         </figure>
       </div>

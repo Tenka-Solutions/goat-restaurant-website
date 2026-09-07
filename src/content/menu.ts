@@ -19,7 +19,7 @@ export const menuCategories: MenuCategory[] = [
     description: text("To snack and share", "Para picar y compartir"),
     items: [
       item("beef-carpaccio", "Beef tenderloin carpaccio", "Carpaccio de lomo de res", "$17.99", text("Thin slices of tenderloin, seasoned and presented G.O.A.T. style.", "Finas láminas de lomo, sazonadas y presentadas al estilo G.O.A.T."), true),
-      item("picada", "Simple picada", "Picada simple", "$17.99", text("Four cheeses, salami and prosciutto. The heading also mentions nuts and bread; confirmation required.", "Selección de cuatro quesos, salame y jamón crudo. El título también menciona frutos secos y pan; requiere confirmación."), true),
+      item("picada", "Simple picada", "Picada simple", "$17.99", text("Four cheeses, salami, prosciutto, nuts and bread.", "Selección de cuatro quesos, salame, jamón crudo, frutos secos y pan."), true),
       item("goat-salad", "G.O.A.T. salad", "Ensalada G.O.A.T.", "$15.99", text("Mixed greens, berries, hearts of palm, Parmesan and grilled beef.", "Mix de hojas verdes, berries, palmitos, queso parmesano y carne asada."), true),
       item("tongue-vinaigrette", "Tongue vinaigrette", "Lengua a la vinagreta", "$11.99", text("Thin cuts of beef tongue seasoned with vinegar and G.O.A.T. spices.", "Finos cortes de lengua de res, sazonados en vinagre y especias G.O.A.T."), true),
       item("choripapas", "Choripapas", "Choripapas", "$13.99", text("Sliced Argentine chorizo with roasted peppers and fries.", "Chorizo argentino laminado con pimientos asados y papas fritas."), true),
@@ -29,7 +29,7 @@ export const menuCategories: MenuCategory[] = [
   {
     id: "empanadas",
     title: text("Empanadas", "Empanadas"),
-    description: text("Each $3.49 · dozen price requires confirmation", "Cada una $3.49 · precio de docena por confirmar"),
+    description: text("$3.49 each", "$3.49 cada una"),
     items: [
       item("empanada-cheese", "Cheese", "Queso", "$3.49 each", undefined, true),
       item("empanada-ham-cheese", "Ham & cheese", "Jamón y queso", "$3.49 each", undefined, true),
@@ -189,7 +189,7 @@ export const menuCategories: MenuCategory[] = [
       item("mate-cocido", "Mate cocido", "Mate cocido", "$2.50", undefined, true),
       item("boldo-tea", "Boldo tea", "Té de boldo", "$2.50", undefined, true),
       item("green-tea", "Green tea", "Té verde", "$2.50"),
-      item("mate-service", "Mate service", "Servicio de mates", "$5.99", text("Hot-water refill, yerba mate and sugar or sweetener; mate set wording requires confirmation.", "Refill de agua caliente, hierba y azúcar o endulzante; texto sobre equipo de mate por confirmar."), true),
+      item("mate-service", "Mate service", "Servicio de mates", "$5.99", text("Includes hot-water refills, yerba mate and sugar or sweetener.", "Incluye recargas de agua caliente, yerba mate y azúcar o endulzante."), true),
     ],
   },
 ];
