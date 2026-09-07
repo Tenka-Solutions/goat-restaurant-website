@@ -15,12 +15,12 @@ export const siteConfig = {
 
 // TODO(client): Complete every null/empty value before launch.
 export const businessDetails: BusinessDetails = {
-  address: null,
-  phone: null,
-  email: null,
-  mapUrl: null,
+  address: "845 North 100 West, Suite 104, Orem, UT 84057",
+  phone: "(801) 548-7910",
+  email: "info@goatargentinegrill.com",
+  mapUrl: "https://www.google.com/maps/search/?api=1&query=845+North+100+West+Suite+104+Orem+UT+84057",
   openingHours: [],
-  instagram: "https://www.instagram.com/goat_argentinian_grill/",
-  facebook: null,
-  tiktok: null,
+  instagram: "https://www.instagram.com/goatrestaurant.utah/",
+  facebook: "https://www.facebook.com/goatrestaurant.utah/",
+  tiktok: "https://www.tiktok.com/@goatrestaurant.utah",
 };
