@@ -33,7 +33,7 @@ export const en = {
     title: "Fire, flour and time.",
     body: "We celebrate honest cooking that begins over the coals and continues in the oven - grilled cuts, empanadas, artisan bread, coffee and mate made for sharing.",
     quote: "Cooking does not end when the plate leaves the kitchen. It ends when the table fills up.",
-    quoteBy: "G.O.A.T. spirit · Editorial copy pending approval",
+    quoteBy: "G.O.A.T. - Argentine Grill & Bakery",
     pillars: [
       ["Embers", "Real fire, precise timing and flavours that speak for themselves."],
       ["Dough", "The patient craft of kneading, fermenting and baking every day."],
