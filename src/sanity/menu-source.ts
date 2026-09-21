@@ -8,6 +8,7 @@ export type PublicMenuItem = {
   name: LocalizedText;
   description?: LocalizedText;
   price?: LocalizedText;
+  image?: { url: string; alt: LocalizedText };
 };
 
 export type PublicMenuCategory = {
@@ -35,6 +36,7 @@ function fromSanity(categories: SiteMenuCategory[]): PublicMenuCategory[] {
       name: item.name,
       description: item.description,
       price: priceLabel(item.formattedPrice, item.priceNote),
+      image: item.image,
     })),
   }));
 }

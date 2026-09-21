@@ -23,6 +23,13 @@ describe("Sanity menu transformation", () => {
     expect(transformSanityMenu([category()], [item({ price: null, priceNote: { en: "Inquire", es: "Consultar" } })])[0].items[0]).toMatchObject({ price: null, priceNote: { en: "Inquire", es: "Consultar" } });
   });
 
+  it("retains only images with an asset URL and bilingual alt text", () => {
+    const validImage = { url: "https://cdn.sanity.io/item.jpg", alt: { en: "Item image", es: "Imagen del producto" } };
+    expect(transformSanityMenu([category()], [item({ image: validImage })])[0].items[0].image).toEqual(validImage);
+    expect(transformSanityMenu([category()], [item({ image: { url: "https://cdn.sanity.io/item.jpg", alt: { en: "Item image" } } })])[0].items[0].image).toBeUndefined();
+    expect(transformSanityMenu([category()], [item({ image: { alt: { en: "Item image", es: "Imagen del producto" } } })])[0].items[0].image).toBeUndefined();
+  });
+
   it("excludes hidden or invalid menu content and requires stable anchors", () => {
     expect(transformSanityMenu([category({ showOnWebsite: false })], [item()])).toEqual([]);
     expect(transformSanityMenu([category({ anchor: { current: "Not Stable" } })], [item()])).toEqual([]);
