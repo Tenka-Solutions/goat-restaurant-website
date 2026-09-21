@@ -2,7 +2,7 @@ import { menuCategories } from "@/content/menu";
 import type { LocalizedText, MenuCategory, MenuItem } from "@/types/site";
 
 type SeedCategory = Omit<MenuCategory, "items"> & { sortOrder: number; items: Array<MenuItem & { priceAmount: number | null; priceNote?: LocalizedText; sortOrder: number }> };
-type SeedDocument = { _id: string; _type: string } & Record<string, unknown>;
+export type SeedDocument = { _id: string; _type: string } & Record<string, unknown>;
 
 const localized = (en: string, es: string): LocalizedText => ({ en, es });
 
@@ -105,4 +105,17 @@ export function buildMenuSeed(): SeedDocument[] {
     }));
     return [categoryDocument, ...itemDocuments];
   });
+}
+
+export function partitionMenuSeed(documents: SeedDocument[]) {
+  const categories = documents.filter((document) => document._type === "menuCategory");
+  const items = documents.filter((document) => document._type === "menuItem");
+  if (categories.length + items.length !== documents.length) throw new Error("Menu seed contains an unsupported document type");
+
+  const categoryIds = new Set(categories.map((category) => category._id));
+  for (const item of items) {
+    const category = item.category as { _ref?: unknown; _weak?: unknown } | undefined;
+    if (typeof category?._ref !== "string" || !categoryIds.has(category._ref) || category._weak === true) throw new Error(`Menu item ${item._id} must use a strong reference to a seeded category`);
+  }
+  return { categories, items };
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildMenuSeed } from "./menu-seed";
+import { buildMenuSeed, partitionMenuSeed } from "./menu-seed";
 import { formatUsd, transformSanityMenu, type SanityMenuCategory, type SanityMenuItem } from "./menu";
 
 const category = (overrides: Partial<SanityMenuCategory> = {}): SanityMenuCategory => ({ _id: "category-a", name: { en: "First", es: "Primero" }, description: { en: "English description", es: "Descripción en español" }, anchor: { current: "first" }, sortOrder: 2, showOnWebsite: true, ...overrides });
@@ -20,6 +20,7 @@ describe("Sanity menu transformation", () => {
     expect(result[0].items[0]).toMatchObject({ price: 18.99, formattedPrice: "$18.99", priceNote: { en: "Each", es: "Cada uno" } });
     expect(formatUsd(null)).toBeUndefined();
     expect(transformSanityMenu([category()], [item({ price: null })])[0].items[0].formattedPrice).toBeUndefined();
+    expect(transformSanityMenu([category()], [item({ price: null, priceNote: { en: "Inquire", es: "Consultar" } })])[0].items[0]).toMatchObject({ price: null, priceNote: { en: "Inquire", es: "Consultar" } });
   });
 
   it("excludes hidden or invalid menu content and requires stable anchors", () => {
@@ -36,6 +37,13 @@ describe("menu seed", () => {
   it("uses deterministic document ids and category anchors", () => {
     expect(document("menuCategory.grilled-meats").anchor).toEqual({ _type: "slug", current: "grilled-meats" });
     expect(document("menuItem.ribeye").category).toEqual({ _type: "reference", _ref: "menuCategory.grilled-meats" });
+  });
+
+  it("separates canonical categories from items with strong category references", () => {
+    const { categories, items } = partitionMenuSeed(documents);
+    expect(categories).toHaveLength(16);
+    expect(items).toHaveLength(86);
+    expect(items.every((entry) => (entry.category as { _ref?: string; _weak?: boolean })._ref?.startsWith("menuCategory.") && (entry.category as { _weak?: boolean })._weak !== true)).toBe(true);
   });
 
   it("applies the latest requested prices and leaves sides unpriced", () => {

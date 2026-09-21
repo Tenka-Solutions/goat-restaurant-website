@@ -44,9 +44,9 @@ Use lower display-order numbers first. Create a category before assigning items 
 
 Phase 1 does not connect the public menu to Sanity. The live menu still uses `src/content/menu.ts`; do not treat Studio menu edits as live until the future cutover is announced.
 
-## Menu seed procedure (not yet executed)
+## Menu seed procedure
 
-The repository includes a deterministic draft seed based on the current local menu and the approved menu updates. It uses fixed IDs, so rerunning it updates the same Sanity drafts without duplication. It never publishes documents.
+The repository includes a deterministic published seed based on the current local menu and the approved menu updates. It reads the active Sanity CLI configuration, prints and validates the target project/dataset before writing, creates canonical category documents first, then creates canonical item documents with strong category references. Fixed IDs and `createOrReplace` make reruns idempotent without duplicates.
 
 When a Sanity administrator is ready to seed the intended dataset, review the code and run:
 
@@ -54,7 +54,7 @@ When a Sanity administrator is ready to seed the intended dataset, review the co
 npx sanity exec scripts/seed-menu.ts --with-user-token
 ```
 
-Review all resulting drafts in Studio before publishing. Do not run this against production until the menu cutover plan has been approved.
+The command writes directly to published canonical IDs. Review the target printed by the script before proceeding; do not run it against production until the menu content has been approved.
 
 ## Permissions limitation
 

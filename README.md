@@ -62,7 +62,7 @@ The PDF contains no bakery catalogue. The bakery area therefore shows approved-s
 
 Sanity now has **Menu Categories** and **Menu Items**. Menu prices are numeric USD amounts, with an optional bilingual price note for entries such as `Inquire / Consultar`. Categories and items need both Sanity publication and **Show on website** enabled for a future public-menu integration. The Phase 1 public menu deliberately remains unchanged and continues to read `src/content/menu.ts`.
 
-The future migration is a deterministic draft seed; it has not been executed. An administrator can later review and run `npx sanity exec scripts/seed-menu.ts --with-user-token`, then review drafts in Studio before publishing. The seed uses fixed IDs and is safe to rerun without duplicates.
+The deterministic menu seed writes published canonical documents to the configured Sanity CLI project and dataset. It uses fixed IDs and `createOrReplace`, writes categories before items, and is safe to rerun without duplicates. An administrator can run `npx sanity exec scripts/seed-menu.ts --with-user-token` after reviewing the target printed by the script.
 
 ## Sanity setup
 

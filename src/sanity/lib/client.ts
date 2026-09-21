@@ -5,10 +5,11 @@ import { transformSanityMenu, type SanityMenuCategory, type SanityMenuItem, type
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
 const apiVersion = process.env.SANITY_API_VERSION || "2025-02-19";
+const token = process.env.SANITY_API_READ_TOKEN;
 
 export const isSanityConfigured = Boolean(projectId && dataset);
 
-const client = isSanityConfigured ? createClient({ projectId: projectId!, dataset: dataset!, apiVersion, useCdn: true }) : null;
+const client = isSanityConfigured ? createClient({ projectId: projectId!, dataset: dataset!, apiVersion, useCdn: false, ...(token ? { token } : {}) }) : null;
 
 const query = `*[_type == "promotionEvent" && published == true] {
   _id, type, "slug": slug.current, title, description, alt,
