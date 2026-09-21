@@ -14,6 +14,8 @@ export default defineConfig({
     S.listItem().title("Promotions").child(S.documentList().title("Promotions").filter('_type == "promotionEvent" && type == "promotion"')),
     S.listItem().title("Events").child(S.documentList().title("Events").filter('_type == "promotionEvent" && type == "event"')),
     S.divider(),
+    S.listItem().title("Homepage images").child(S.document().schemaType("homePageImages").documentId("homePageImages").title("Homepage images")),
+    S.divider(),
     S.listItem().title("Menu Categories").child(S.documentTypeList("menuCategory").title("Menu Categories").defaultOrdering([{ field: "sortOrder", direction: "asc" }])),
     S.listItem().title("Menu Items").child(S.documentTypeList("menuItem").title("Menu Items").defaultOrdering([{ field: "sortOrder", direction: "asc" }])),
   ]) })],

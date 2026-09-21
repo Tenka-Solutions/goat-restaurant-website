@@ -1,6 +1,7 @@
 import { createClient } from "next-sanity";
 import type { PromotionEvent } from "@/types/site";
 import { transformSanityMenu, type SanityMenuCategory, type SanityMenuItem, type SiteMenuCategory } from "@/sanity/menu";
+import { normalizeHomePageImages, type HomePageImages, type SanityHomePageImages } from "@/sanity/home-page-images";
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
@@ -26,6 +27,15 @@ const menuItemsQuery = `*[_type == "menuItem" && !(_id in path("drafts.**")) && 
   "image": { "url": image.asset->url, "alt": imageAlt }
 }`;
 
+const homePageImagesQuery = `*[_type == "homePageImages" && _id == "homePageImages" && !(_id in path("drafts.**"))][0] {
+  "heroImage": { "url": heroImage.asset->url }, heroImageAlt,
+  "flavoursCard1Image": { "url": flavoursCard1Image.asset->url },
+  "flavoursCard2Image": { "url": flavoursCard2Image.asset->url },
+  "flavoursCard3Image": { "url": flavoursCard3Image.asset->url },
+  "flavoursCard4Image": { "url": flavoursCard4Image.asset->url },
+  "experienceImage": { "url": experienceImage.asset->url }, experienceImageAlt
+}`;
+
 export async function getPromotionEvents(): Promise<PromotionEvent[]> {
   if (!client) return [];
   try {
@@ -45,5 +55,18 @@ export async function getMenuCategories(): Promise<SiteMenuCategory[]> {
     return transformSanityMenu(categories, items);
   } catch {
     return [];
+  }
+}
+
+async function loadHomePageImages(): Promise<SanityHomePageImages | null> {
+  if (!client) return null;
+  return client.fetch<SanityHomePageImages | null>(homePageImagesQuery, {}, { next: { revalidate: 300 } });
+}
+
+export async function getHomePageImages(load: () => Promise<SanityHomePageImages | null> = loadHomePageImages): Promise<HomePageImages> {
+  try {
+    return normalizeHomePageImages(await load());
+  } catch {
+    return normalizeHomePageImages();
   }
 }
