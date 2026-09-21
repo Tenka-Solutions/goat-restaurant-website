@@ -7,7 +7,7 @@ Bilingual marketing site for G.O.A.T., with a native web menu, a restricted prom
 - Next.js 15 App Router, React 19 and strict TypeScript
 - Tailwind CSS with existing G.O.A.T. colour/type tokens
 - Local Bebas Neue and Montserrat files through Fontsource
-- Sanity Studio 4 + `next-sanity` 11 for promotions/events only
+- Sanity Studio 4 + `next-sanity` 11 for promotions/events and Phase 1 menu management
 - Resend HTTP API for email (no message database)
 - Vitest for focused unit tests; `qrcode` as a development-only generator
 
@@ -23,7 +23,7 @@ Bilingual marketing site for G.O.A.T., with a native web menu, a restricted prom
 | `/studio` | Restricted Sanity editing interface |
 | `/api/contact` | Validated contact endpoint |
 
-The language switch uses real links, maps equivalent pages, and preserves query strings and hashes. Static copy lives in `src/content/en` and `src/content/es`; menu data lives in typed `src/content/menu.ts`. Middleware provides the locale to the root layout so `<html lang>` is correct.
+The language switch uses real links, maps equivalent pages, and preserves query strings and hashes. Static copy lives in `src/content/en` and `src/content/es`; the live menu remains in typed `src/content/menu.ts`. Phase 1 also includes an isolated Sanity menu schema, query, transformation, and draft seed layer, but no public route reads it yet. Middleware provides the locale to the root layout so `<html lang>` is correct.
 
 ## Local setup
 
@@ -57,6 +57,12 @@ CONTACT_FROM_EMAIL=G.O.A.T. <website@verified-domain.example>
 The web menu is semantic HTML, responsive and indexable. Source copy/prices came from `docs/source-menu/G.O.A.T.pdf`; the original is published at `public/menu/goat-menu.pdf`. Review unresolved content in `docs/menu-content-review.md` before launch. Update products in `src/content/menu.ts`; prices intentionally remain formatted strings.
 
 The PDF contains no bakery catalogue. The bakery area therefore shows approved-style placeholder copy until confirmed products arrive.
+
+### Phase 1 Sanity menu foundation
+
+Sanity now has **Menu Categories** and **Menu Items**. Menu prices are numeric USD amounts, with an optional bilingual price note for entries such as `Inquire / Consultar`. Categories and items need both Sanity publication and **Show on website** enabled for a future public-menu integration. The Phase 1 public menu deliberately remains unchanged and continues to read `src/content/menu.ts`.
+
+The future migration is a deterministic draft seed; it has not been executed. An administrator can later review and run `npx sanity exec scripts/seed-menu.ts --with-user-token`, then review drafts in Studio before publishing. The seed uses fixed IDs and is safe to rerun without duplicates.
 
 ## Sanity setup
 
