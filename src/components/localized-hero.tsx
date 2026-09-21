@@ -13,7 +13,8 @@ const heroLineClass = {
 } as const;
 
 export function LocalizedHero({ locale, image }: { locale: Locale; image: HomePageImages["hero"] }) {
-  const copy = getDictionary(locale).hero;
+  const dictionary = getDictionary(locale);
+  const copy = dictionary.hero;
 
   return (
     <section id="top" className="relative flex min-h-[43rem] items-center overflow-hidden bg-ink px-5 py-24 sm:px-8 lg:min-h-[49rem] lg:px-12">
@@ -25,9 +26,10 @@ export function LocalizedHero({ locale, image }: { locale: Locale; image: HomePa
           {copy.title.map((line) => <span key={line.text} className={`block ${heroLineClass[line.style]}`}>{line.text}</span>)}
         </h1>
         <p className="mt-6 max-w-xl text-base leading-7 text-ivory/72 sm:text-lg">{copy.description}</p>
-        <div className="mt-9 flex flex-col gap-3 min-[420px]:flex-row">
+        <div className="mt-9 flex flex-col gap-3 min-[420px]:flex-row min-[420px]:flex-wrap">
           <Link href={localizedPath(locale, "menu")} className="inline-flex min-h-13 items-center justify-center bg-gold px-7 text-xs font-bold uppercase tracking-[.18em] text-ink hover:bg-ivory">{copy.primary}</Link>
           <a href={siteConfig.cloverOrderingUrl} target="_blank" rel="noopener noreferrer" data-cta="clover-ordering" className="inline-flex min-h-13 items-center justify-center border border-sky/75 px-7 text-xs font-bold uppercase tracking-[.18em] text-sky-light hover:bg-sky hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky">{copy.secondary}</a>
+          <Link href={localizedPath(locale, "eventInquiry")} className="link-underline inline-flex min-h-13 items-center justify-center px-3 text-xs font-bold uppercase tracking-[.18em] text-ivory/75 hover:text-ivory">{dictionary.navigation.eventInquiry}</Link>
         </div>
       </div>
     </section>

@@ -9,6 +9,14 @@ describe("bilingual content", () => {
     expect(dictionaries.en.hero.title.find((line) => line.text === "flavour")?.style).toBe("default");
     expect(dictionaries.es.hero.title.find((line) => line.style === "argentina")?.text).toBe("argentino");
   });
+  it("provides localized event inquiry copy without implying confirmation", () => {
+    expect(dictionaries.en.eventInquiry.title).toBe("Book your event");
+    expect(dictionaries.es.eventInquiry.title).toBe("Reserva tu evento");
+    expect(dictionaries.en.eventInquiry.submit).toBe("Send request");
+    expect(dictionaries.es.eventInquiry.submit).toBe("Enviar solicitud");
+    expect(dictionaries.en.eventInquiry.success).toContain("does not confirm a reservation");
+    expect(dictionaries.es.eventInquiry.success).toContain("no confirma una reserva");
+  });
   it("has unique category and product ids", () => { const ids = menuCategories.flatMap((category) => [category.id, ...category.items.map((item) => item.id)]); expect(new Set(ids).size).toBe(ids.length); });
   it("provides both languages for public menu text", () => { for (const category of menuCategories) { expect(category.title.en).toBeTruthy(); expect(category.title.es).toBeTruthy(); for (const item of category.items) { expect(item.name.en).toBeTruthy(); expect(item.name.es).toBeTruthy(); } } });
 });

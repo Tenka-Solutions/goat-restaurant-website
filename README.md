@@ -20,8 +20,10 @@ Bilingual marketing site for G.O.A.T., with a native web menu, a restricted prom
 | `/menu` | Stable redirect to `/en/menu`; QR destination |
 | `/en/menu`, `/es/menu` | Native restaurant menu and bakery area |
 | `/en/promotions`, `/es/promociones` | Active promotions and upcoming events |
+| `/en/book-your-event`, `/es/reserva-tu-evento` | Event inquiry form (availability is confirmed by the restaurant) |
 | `/studio` | Restricted Sanity editing interface |
 | `/api/contact` | Validated contact endpoint |
+| `/api/event-inquiry` | Validated event inquiry endpoint |
 
 The language switch uses real links, maps equivalent pages, and preserves query strings and hashes. Static copy lives in `src/content/en` and `src/content/es`; the live menu remains in typed `src/content/menu.ts`. Phase 1 also includes an isolated Sanity menu schema, query, transformation, and draft seed layer, but no public route reads it yet. Middleware provides the locale to the root layout so `<html lang>` is correct.
 
@@ -79,6 +81,10 @@ The schema requires bilingual content, image/alt text, slug, type, start date, p
 Client and server validation cover required fields, email shape and size limits. The endpoint uses a honeypot, a best-effort in-memory rate limit and a 12 KB request cap. It sends plain text through Resend, uses the visitor as reply-to, logs no personal data and stores nothing.
 
 The in-memory limit is per runtime instance; high-traffic or multi-region deployments should replace it with a managed edge limiter. Configure all three private email variables and verify the sender domain before testing delivery.
+
+## Event inquiries
+
+The event form is a separate inquiry flow: it sends the requested details as plain text through Resend and never confirms availability automatically. It uses the same private email configuration as the contact form, including `CONTACT_RECIPIENT_EMAIL`, and has the same honeypot, request cap, and best-effort rate limiting protections.
 
 ## Brand assets
 

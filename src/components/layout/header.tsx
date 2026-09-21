@@ -15,6 +15,7 @@ export function Header({ locale }: { locale: Locale }) {
     { label: copy.navigation.menu, href: localizedPath(locale, "menu") },
     { label: copy.navigation.bakery, href: `${localizedPath(locale, "menu")}#bakery` },
     { label: copy.navigation.promotions, href: localizedPath(locale, "promotions") },
+    { label: copy.navigation.eventInquiry, href: localizedPath(locale, "eventInquiry") },
     { label: copy.navigation.experience, href: `${home}#experience` },
     { label: copy.navigation.visit, href: `${home}#visit` },
   ];
@@ -28,7 +29,7 @@ export function Header({ locale }: { locale: Locale }) {
         </Link>
         <nav className="hidden xl:block" aria-label={copy.navigation.label}>
           <ul className="flex items-center gap-5 xl:gap-7">
-            {items.map((entry) => <li key={entry.href}><Link className="link-underline py-3 text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-ivory/75 hover:text-ivory xl:text-[0.65rem]" href={entry.href}>{entry.label}</Link></li>)}
+            {items.map((entry) => <li key={entry.href}><Link className="link-underline whitespace-nowrap py-3 text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-ivory/75 hover:text-ivory xl:text-[0.65rem]" href={entry.href}>{entry.label}</Link></li>)}
           </ul>
         </nav>
         <div className="hidden items-center gap-5 xl:flex">

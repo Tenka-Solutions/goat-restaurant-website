@@ -11,6 +11,7 @@ export const routes = {
   home: { en: "/en", es: "/es" },
   menu: { en: "/en/menu", es: "/es/menu" },
   promotions: { en: "/en/promotions", es: "/es/promociones" },
+  eventInquiry: { en: "/en/book-your-event", es: "/es/reserva-tu-evento" },
 } as const;
 
 export type RouteKey = keyof typeof routes;
