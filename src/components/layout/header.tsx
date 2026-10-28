@@ -23,17 +23,19 @@ export function Header({ locale }: { locale: Locale }) {
 
   return (
     <header className="relative z-30 border-b border-ivory/10 bg-ink/95">
-      <div className="mx-auto flex h-20 max-w-[90rem] items-center justify-between px-5 sm:px-8 lg:h-24 lg:px-12">
+      <div className="mx-auto flex h-20 max-w-[90rem] items-center justify-between gap-4 px-5 sm:px-8 lg:h-24 lg:px-12">
         <Link href={home} className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky">
           <BrandMark inverse />
         </Link>
-        <nav className="hidden xl:block" aria-label={copy.navigation.label}>
-          <ul className="flex items-center gap-5 xl:gap-7">
+        <nav className="hidden min-[1600px]:block" aria-label={copy.navigation.label}>
+          <ul className="flex items-center gap-4">
             {items.map((entry) => <li key={entry.href}><Link className="link-underline whitespace-nowrap py-3 text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-ivory/75 hover:text-ivory xl:text-[0.65rem]" href={entry.href}>{entry.label}</Link></li>)}
           </ul>
         </nav>
-        <div className="hidden items-center gap-5 xl:flex">
-          <LanguageSwitcher locale={locale} />
+        <div className="hidden shrink-0 items-center gap-4 min-[1600px]:flex">
+          <div className="border-l border-ivory/25 pl-5">
+            <LanguageSwitcher locale={locale} />
+          </div>
           <a href={cta.href} target="_blank" rel="noopener noreferrer" data-cta="clover-ordering" className="inline-flex min-h-11 items-center border border-sky/80 px-4 text-[0.6rem] font-bold uppercase tracking-[0.14em] text-sky-light hover:bg-sky hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky">{cta.label}</a>
         </div>
         <MobileMenu locale={locale} items={items} cta={cta} labels={{ open: copy.navigation.open, close: copy.navigation.close, nav: copy.navigation.label }} />

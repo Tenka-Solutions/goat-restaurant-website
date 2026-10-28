@@ -1,8 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { dictionaries } from "./dictionaries";
+import { businessDetails } from "@/config/site";
 import { menuCategories } from "./menu";
 
 describe("bilingual content", () => {
+  it("uses the restaurant phone number rather than a personal mobile number", () => {
+    expect(businessDetails.phone).toBe("(801) 301-2098");
+  });
   it("serializes dictionaries without object leaks", () => { expect(JSON.stringify(dictionaries)).not.toContain("undefined"); expect(dictionaries.en.hero.title).toHaveLength(4); });
   it("assigns the Argentine accent by semantic intent in each locale", () => {
     expect(dictionaries.en.hero.title.find((line) => line.style === "argentina")?.text).toBe("Argentine");

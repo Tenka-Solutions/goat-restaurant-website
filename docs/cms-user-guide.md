@@ -1,61 +1,40 @@
-# G.O.A.T. CMS user guide
+# G.O.A.T. website content management — quick guide
 
-The Studio contains **Promotions**, **Events**, **Menu Categories**, and **Menu Items**. It cannot edit the home hero, navigation, institutional copy, footer, styles or global metadata.
+The customer-facing site is at `https://goatrestaurantsutah.com`.
+Staff can sign in to the **G.O.A.T. Content** Studio at `https://goatrestaurantsutah.com/studio` using an invited Sanity account.
 
-## Sign in
+## Menu items and categories
 
-1. Open `https://YOUR-DOMAIN.com/studio`.
-2. Sign in with the Sanity account invited by the project administrator.
-3. Choose the appropriate content section from the left column.
+- **Menu Items:** open a dish to update its English/Spanish name, description, price, optional photo, sort order, or **Show on website** status.
+- **Menu Categories:** edit bilingual category details, their order, or visibility.
+- For a dish photo, upload an image and enter both English and Spanish alt text.
+- Use **Publish** after editing. A saved draft alone is not visible on the public menu.
+- To temporarily remove an unavailable dish, turn off **Show on website** and publish, rather than deleting the item.
+- The live public menu reads published Sanity documents. The legacy TypeScript menu is a fallback if Sanity is unavailable or returns no renderable menu items.
 
-If Studio says it is not configured, the deployment administrator must add the Sanity environment variables first.
+## Homepage images
 
-## Create a promotion or event
+Open **Homepage images**. The six editable placements are the Hero, four Flavours cards, and Experience.
 
-1. Open the relevant list and select **Create**.
-2. Choose the correct type: Promotion or Event.
-3. Complete the English title and description first; English is the primary editorial language.
-4. Complete the Spanish title and description. Both languages are required.
-5. Generate or enter a short slug.
-6. Upload one landscape image. Use the crop/hotspot control to keep the important subject visible.
-7. Write meaningful image alt text in English and Spanish; describe the image rather than repeating the title.
-8. Optionally add CTA text in both languages and a valid link.
+- Upload approved restaurant photography to each desired image field.
+- Fill in the English and Spanish alternative text for Hero and Experience.
+- Click **Publish**. An empty or incomplete image field falls back to the current default image.
 
-## Schedule and publish
+## Promotions and Events
 
-1. Set the start date and time.
-2. Add an end date when the content should disappear. The end cannot be earlier than the start.
-3. Add the public-facing date/time wording in both languages when relevant.
-4. Set priority from 0–100. Higher numbers appear first.
-5. Turn on **Show on website**.
-6. Select **Publish** in Sanity. Changes can take up to five minutes to appear because the site caches public reads.
+Staff can manage marketing promotions and restaurant-run events from their respective Studio sections. These are distinct from customer event inquiries; inquiries arrive by email.
 
-Future events may appear before their start date. Future promotions appear only once started. Expired content disappears automatically.
+## Publishing and troubleshooting
 
-## Withdraw content
+The website normally refreshes published CMS changes within approximately five minutes. Reload the public page after publishing.
 
-Turn off **Show on website** and publish again, or use Sanity’s unpublish action. Deleting is unnecessary and makes recovery harder.
+If changes appear to save but cannot be published, check the member's Sanity **role** first. After a Growth Trial expires, Sanity automatically downgrades to Free and converts non-admin team members to **Viewer**. A Viewer cannot edit or publish content. Free supports two human roles: **Administrator** (can publish and manage project settings) and **Viewer** (read-only). The restricted **Editor** role is available on paid Growth/Enterprise plans. See the official Sanity [Growth trial](https://www.sanity.io/docs/platform-management/growth-plan-trial) and [Roles](https://www.sanity.io/docs/user-guides/roles) documentation.
 
-## Menu management (Phase 1 foundation)
+For production, the project owner must consciously choose one of these paths:
 
-Menu Categories have bilingual names, an optional bilingual description, a stable website anchor, and a display order. Menu Items have bilingual names and optional descriptions, a category, display order, an optional numeric USD price, optional bilingual price note, and optional image with bilingual alt text.
+1. **Free:** grant the trusted restaurant owner **Administrator** access, acknowledging that it includes project-settings and member-management privileges.
+2. **Growth:** pay for the necessary editor seats and assign the customer **Editor** rather than Administrator.
 
-Use lower display-order numbers first. Create a category before assigning items to it. Use **Show on website** to hide a category or item without deleting it. Publishing and showing are separate: content must be published in Sanity and have **Show on website** enabled before a later public-menu release can display it.
+Do not share the developer's login or expose server-side Sanity tokens to the browser. A Studio navigation menu is not a substitute for project permissions.
 
-Phase 1 does not connect the public menu to Sanity. The live menu still uses `src/content/menu.ts`; do not treat Studio menu edits as live until the future cutover is announced.
-
-## Menu seed procedure
-
-The repository includes a deterministic published seed based on the current local menu and the approved menu updates. It reads the active Sanity CLI configuration, prints and validates the target project/dataset before writing, creates canonical category documents first, then creates canonical item documents with strong category references. Fixed IDs and `createOrReplace` make reruns idempotent without duplicates.
-
-When a Sanity administrator is ready to seed the intended dataset, review the code and run:
-
-```bash
-npx sanity exec scripts/seed-menu.ts --with-user-token
-```
-
-The command writes directly to published canonical IDs. Review the target printed by the script before proceeding; do not run it against production until the menu content has been approved.
-
-## Permissions limitation
-
-The Studio navigation and schema expose promotions, events, menu categories, and menu items, but that is an interface restriction, not a substitute for provider permissions. Exact role granularity depends on the Sanity plan. The project administrator must assign the narrowest available role; some fine-grained roles may require a paid plan.
+Before changing roles, confirm the actual plan and the customer's current role under [Sanity Manage](https://www.sanity.io/manage/project/g8zw5af0), **Members** and **Plan**. No dataset migration or reseeding is required to fix a Viewer-only permission issue.

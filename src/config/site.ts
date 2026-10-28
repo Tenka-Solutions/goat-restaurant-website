@@ -14,7 +14,7 @@ export const siteConfig = {
 
 export const businessDetails: BusinessDetails = {
   address: "845 North 100 West, Suite 104, Orem, UT 84057",
-  phone: "(801) 548-7910",
+  phone: "(801) 301-2098",
   email: "info@goatargentinegrill.com",
   mapUrl: "https://www.google.com/maps/search/?api=1&query=845+North+100+West+Suite+104+Orem+UT+84057",
   openingHours: [],
