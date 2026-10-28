@@ -12,7 +12,7 @@ export function LanguageSwitcher({ locale }: { locale: Locale }) {
   const [hash, setHash] = useState("");
   useEffect(() => setHash(window.location.hash), [pathname]);
   return (
-    <nav aria-label="Language" className="flex items-center gap-1 text-[0.65rem] font-bold tracking-[0.16em]">
+    <nav aria-label="Language" className="flex shrink-0 items-center gap-1 whitespace-nowrap text-[0.65rem] font-bold tracking-[0.16em]">
       {(["en", "es"] as const).map((target, index) => {
         const query = search.toString();
         const href = `${equivalentPath(pathname, target)}${query ? `?${query}` : ""}${hash}`;
