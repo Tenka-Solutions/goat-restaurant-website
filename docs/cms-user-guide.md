@@ -1,6 +1,13 @@
 # G.O.A.T. website content management — quick guide
 
-The customer-facing site is at `https://goatrestaurantsutah.com`.
+**Current source of truth (November 2026):** The public restaurant menu is now maintained by the restaurant at https://menu.igniscreativeco.com/. The site no longer serves the old internal menu, PDF, or Sanity menu entries to visitors.
+
+- Public `/menu`, `/en/menu`, and `/es/menu` paths redirect to the approved external menu so older QR codes and saved links continue working.
+- Pickup ordering uses a different service: https://goat-argentine-grill-orem-ut.cloveronline.com/menu/all.
+- Sanity still manages **Homepage images**, **Promotions**, and **Events**. The Sanity menu documents remain stored but are **not currently used by the public website**. Do not manually change them expecting public menu updates.
+
+
+
 Staff can sign in to the **G.O.A.T. Content** Studio at `https://goatrestaurantsutah.com/studio` using an invited Sanity account.
 
 ## Menu items and categories
