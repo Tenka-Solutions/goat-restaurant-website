@@ -12,8 +12,8 @@ export function Header({ locale }: { locale: Locale }) {
   const home = localizedPath(locale, "home");
   const items = [
     { label: copy.navigation.essence, href: `${home}#essence` },
-    { label: copy.navigation.menu, href: localizedPath(locale, "menu") },
-    { label: copy.navigation.bakery, href: `${localizedPath(locale, "menu")}#bakery` },
+    { label: copy.navigation.menu, href: siteConfig.publicMenuUrl, external: true },
+    { label: copy.navigation.bakery, href: siteConfig.publicMenuUrl, external: true },
     { label: copy.navigation.promotions, href: localizedPath(locale, "promotions") },
     { label: copy.navigation.eventInquiry, href: localizedPath(locale, "eventInquiry") },
     { label: copy.navigation.experience, href: `${home}#experience` },
@@ -29,7 +29,7 @@ export function Header({ locale }: { locale: Locale }) {
         </Link>
         <nav className="hidden min-[1600px]:block" aria-label={copy.navigation.label}>
           <ul className="flex items-center gap-4">
-            {items.map((entry) => <li key={entry.href}><Link className="link-underline whitespace-nowrap py-3 text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-ivory/75 hover:text-ivory xl:text-[0.65rem]" href={entry.href}>{entry.label}</Link></li>)}
+            {items.map((entry) => <li key={entry.label}>{entry.external ? <a className="link-underline whitespace-nowrap py-3 text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-ivory/75 hover:text-ivory xl:text-[0.65rem]" href={entry.href} target="_blank" rel="noopener noreferrer">{entry.label}</a> : <Link className="link-underline whitespace-nowrap py-3 text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-ivory/75 hover:text-ivory xl:text-[0.65rem]" href={entry.href}>{entry.label}</Link>}</li>)}
           </ul>
         </nav>
         <div className="hidden shrink-0 items-center gap-4 min-[1600px]:flex">
