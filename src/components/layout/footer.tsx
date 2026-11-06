@@ -12,7 +12,7 @@ export function Footer({ locale }: { locale: Locale }) {
     : null;
   const links = [
     { label: copy.ordering.cta, href: siteConfig.cloverOrderingUrl, external: true },
-    { label: copy.navigation.menu, href: localizedPath(locale, "menu"), external: false },
+    { label: copy.navigation.menu, href: siteConfig.publicMenuUrl, external: true },
     { label: copy.navigation.promotions, href: localizedPath(locale, "promotions"), external: false },
     { label: copy.navigation.visit, href: `${localizedPath(locale, "home")}#visit`, external: false },
   ];
@@ -27,7 +27,7 @@ export function Footer({ locale }: { locale: Locale }) {
         </div>
         <div>
           <p className="mb-4 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-gold">{copy.footer.explore}</p>
-          <ul className="space-y-3 text-sm text-ivory/65">{links.map((link) => <li key={link.href}>{link.external ? <a href={link.href} target="_blank" rel="noopener noreferrer" data-cta="clover-ordering" className="hover:text-sky focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky">{link.label}</a> : <Link href={link.href} className="hover:text-sky">{link.label}</Link>}</li>)}</ul>
+          <ul className="space-y-3 text-sm text-ivory/65">{links.map((link) => <li key={link.href}>{link.external ? <a href={link.href} target="_blank" rel="noopener noreferrer" data-cta={link.href === siteConfig.cloverOrderingUrl ? "clover-ordering" : undefined} className="hover:text-sky focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky">{link.label}</a> : <Link href={link.href} className="hover:text-sky">{link.label}</Link>}</li>)}</ul>
         </div>
         <div>
           <p className="mb-4 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-gold">{copy.footer.connect}</p>
