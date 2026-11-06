@@ -10,14 +10,9 @@
 
 Staff can sign in to the **G.O.A.T. Content** Studio at `https://goatrestaurantsutah.com/studio` using an invited Sanity account.
 
-## Menu items and categories
+## Current restaurant menu
 
-- **Menu Items:** open a dish to update its English/Spanish name, description, price, optional photo, sort order, or **Show on website** status.
-- **Menu Categories:** edit bilingual category details, their order, or visibility.
-- For a dish photo, upload an image and enter both English and Spanish alt text.
-- Use **Publish** after editing. A saved draft alone is not visible on the public menu.
-- To temporarily remove an unavailable dish, turn off **Show on website** and publish, rather than deleting the item.
-- The live public menu reads published Sanity documents. The legacy TypeScript menu is a fallback if Sanity is unavailable or returns no renderable menu items.
+The restaurant now maintains its menu at https://menu.igniscreativeco.com/. The old Sanity categories/items and PDF are **not** visible to visitors. To change prices, products or availability, use the restaurant's external menu management service rather than the G.O.A.T. Studio.
 
 ## Homepage images
 
