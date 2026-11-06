@@ -25,9 +25,9 @@ export function LocalizedHero({ locale, image }: { locale: Locale; image: HomePa
         <h1 className="max-w-3xl font-display text-[4.1rem] leading-[.88] tracking-[.01em] text-ivory sm:text-8xl lg:text-[7.5rem]">
           {copy.title.map((line) => <span key={line.text} className={`block ${heroLineClass[line.style]}`}>{line.text}</span>)}
         </h1>
-        <p className="mt-6 max-w-xl text-base leading-7 text-ivory/72 sm:text-lg">{copy.description}</p>
+        <p className="mt-6 max-w-2xl text-base leading-7 text-ivory/72 sm:text-lg">{copy.description}</p>
         <div className="mt-9 flex flex-col gap-3 min-[420px]:flex-row min-[420px]:flex-wrap">
-          <Link href={localizedPath(locale, "menu")} className="inline-flex min-h-13 items-center justify-center bg-gold px-7 text-xs font-bold uppercase tracking-[.18em] text-ink hover:bg-ivory">{copy.primary}</Link>
+          <a href={siteConfig.publicMenuUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-13 items-center justify-center bg-gold px-7 text-xs font-bold uppercase tracking-[.18em] text-ink hover:bg-ivory">{copy.primary}</a>
           <a href={siteConfig.cloverOrderingUrl} target="_blank" rel="noopener noreferrer" data-cta="clover-ordering" className="inline-flex min-h-13 items-center justify-center border border-sky/75 px-7 text-xs font-bold uppercase tracking-[.18em] text-sky-light hover:bg-sky hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky">{copy.secondary}</a>
           <Link href={localizedPath(locale, "eventInquiry")} className="link-underline inline-flex min-h-13 items-center justify-center px-3 text-xs font-bold uppercase tracking-[.18em] text-ivory/75 hover:text-ivory">{dictionary.navigation.eventInquiry}</Link>
         </div>
