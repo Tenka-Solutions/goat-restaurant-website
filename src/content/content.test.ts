@@ -1,9 +1,18 @@
 import { describe, expect, it } from "vitest";
 import { dictionaries } from "./dictionaries";
-import { businessDetails } from "@/config/site";
+import { businessDetails, siteConfig } from "@/config/site";
 import { menuCategories } from "./menu";
 
 describe("bilingual content", () => {
+  it("uses the client-approved official menu and Clover URLs", () => {
+    expect(siteConfig.publicMenuUrl).toBe("https://menu.igniscreativeco.com/");
+    expect(siteConfig.cloverOrderingUrl).toBe("https://goat-argentine-grill-orem-ut.cloveronline.com/menu/all");
+  });
+  it("lists all three day groups in each language for the confirmed schedule", () => {
+    expect(businessDetails.openingHours).toEqual(["8:00 AM - 10:00 PM", "8:00 AM - 12:00 AM", "8:00 AM - 6:00 PM"]);
+    expect(dictionaries.en.visit.days).toHaveLength(3);
+    expect(dictionaries.es.visit.days).toHaveLength(3);
+  });
   it("uses the restaurant phone number rather than a personal mobile number", () => {
     expect(businessDetails.phone).toBe("(801) 301-2098");
   });
