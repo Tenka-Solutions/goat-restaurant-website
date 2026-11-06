@@ -25,7 +25,7 @@ export const en = {
       { text: "starts with", style: "gold" },
       { text: "fire.", style: "gold" },
     ],
-    description: "Grill, bakery and coffee made with time, craft and the spirit that turns every table into a gathering.",
+    description: "Argentine tradition, grilled meats, bakery, mate and coffee, prepared with passion and quality. Visit us and discover authentic Argentine flavours in Utah! We look forward to sharing a meal and making you feel at home.",
     primary: "Explore our menu",
     secondary: "Order for Pickup",
   },
@@ -44,7 +44,7 @@ export const en = {
   flavours: { eyebrow: "What moves us", title: "Flavours with a story.", body: "From grill to oven, an Argentine table with room for everyone.", items: ["Grill", "Empanadas", "Bakery", "Coffee & mate"] },
   story: { eyebrow: "A table to share", title: "Argentine tradition, served our way.", body: "G.O.A.T. brings the character of the grill together with the warmth of a neighbourhood bakery. Every detail invites you to slow down, eat well and feel at home." },
   promotions: { eyebrow: "What is happening", title: "Promotions & events.", viewAll: "See all", empty: "No active promotions or events right now.", promotion: "Promotion", event: "Event" },
-  visit: { eyebrow: "Come meet us", title: "Your place at the table.", address: "Address", hours: "Hours", contact: "Contact", hoursComingSoon: "Hours coming soon." },
+  visit: { eyebrow: "Come meet us", title: "Your place at the table.", address: "Address", hours: "Hours", contact: "Contact", hoursComingSoon: "Hours coming soon.", days: ["Monday - Thursday", "Friday - Saturday", "Sunday"] },
   contact: { title: "Contact us", intro: "Send us a message and our team will reply as soon as possible.", name: "Name", email: "Email", phone: "Phone (optional)", subject: "Subject", subjectPlaceholder: "Select a subject", message: "Message", consent: "I agree that G.O.A.T. may use these details to answer my inquiry.", submit: "Send message", sending: "Sending…", success: "Thanks, your message was sent.", genericError: "We could not send your message. Please try again.", configError: "The contact form is temporarily unavailable. Please email us directly.", validation: "Please review the highlighted fields.", subjectOptions: ["General inquiry", "Private event", "Bakery", "Other"] },
   menu: { eyebrow: "The G.O.A.T. menu", title: "Restaurant menu", intro: "Explore our current menu selection. Items and prices may change.", logoAlt: "G.O.A.T. Argentine Grill & Bakery official logo", restaurant: "Restaurant", bakery: "Bakery", index: "Browse categories", pdf: "View / Download PDF", share: "Share menu", shared: "Link copied", qrTitle: "Scan to view the menu", qrBody: "Open the menu directly on your phone.", qrAlt: "QR code to open the G.O.A.T. web menu", bakeryTitle: "Bakery selection", bakeryBody: "Our bakery catalogue is being prepared. We will share the selection here soon." },
   eventInquiry: {
