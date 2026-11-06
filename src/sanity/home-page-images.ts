@@ -19,15 +19,29 @@ export type HomePageImages = {
   experience: { src: string; alt: LocalizedText };
 };
 
+// Approved restaurant photographs supplied in November 2026.
+// A complete published CMS image still takes precedence for each slot.
 const fallbackImages: HomePageImages = {
-  hero: { src: "/images/hero-grill.png", alt: { en: "Argentine grilled beef beside the fire", es: "Corte argentino a la parrilla junto al fuego" } },
+  hero: {
+    src: "/images/hero-real.webp",
+    alt: {
+      en: "Burger and fries served at G.O.A.T. beneath the restaurant logo",
+      es: "Hamburguesa y papas fritas servidas en G.O.A.T. bajo el logo del restaurante",
+    },
+  },
   flavours: [
-    { src: "/images/hero-grill.png" },
-    { src: "/images/bakery-table.png" },
-    { src: "/images/bakery-table.png" },
-    { src: "/images/restaurant-experience.png" },
+    { src: "/images/grill-real.webp" },
+    { src: "/images/empanadas-real.webp" },
+    { src: "/images/bakery-real.webp" },
+    { src: "/images/gnocchi-real.webp" },
   ],
-  experience: { src: "/images/restaurant-experience.png", alt: { en: "Friends sharing a meal by the grill", es: "Amigos compartiendo una comida junto a la parrilla" } },
+  experience: {
+    src: "/images/experience-real.webp",
+    alt: {
+      en: "G.O.A.T. baker holding a tray of freshly baked empanadas and pastries",
+      es: "Panadero de G.O.A.T. mostrando una bandeja de empanadas y productos recién horneados",
+    },
+  },
 };
 
 function localized(value?: Partial<LocalizedText>): LocalizedText | undefined {

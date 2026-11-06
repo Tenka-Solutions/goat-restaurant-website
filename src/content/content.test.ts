@@ -4,6 +4,12 @@ import { businessDetails, siteConfig } from "@/config/site";
 import { menuCategories } from "./menu";
 
 describe("bilingual content", () => {
+  it("highlights Sunday pasta and 29th gnocchi instead of the obsolete coffee card", () => {
+    expect(dictionaries.en.flavours.items[3]).toBe("Pasta & gnocchi");
+    expect(dictionaries.es.flavours.items[3]).toBe("Pastas y ñoquis");
+    expect(dictionaries.en.flavours.body).toContain("29th");
+    expect(dictionaries.es.flavours.body).toContain("domingos");
+  });
   it("uses the client-approved official menu and Clover URLs", () => {
     expect(siteConfig.publicMenuUrl).toBe("https://menu.igniscreativeco.com/");
     expect(siteConfig.cloverOrderingUrl).toBe("https://goat-argentine-grill-orem-ut.cloveronline.com/menu/all");
