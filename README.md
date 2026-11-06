@@ -1,6 +1,6 @@
 # G.O.A.T. Argentine Grill & Bakery
 
-Bilingual marketing site for G.O.A.T., with a native web menu, a restricted promotions/events CMS, contact form and an on-screen menu QR. English is primary. The project intentionally excludes ordering, checkout, payments, internal reservations, customer accounts and a general-purpose admin panel.
+Bilingual restaurant website for G.O.A.T., with links to the restaurant-managed external menu and Clover pickup ordering, a Sanity-managed homepage gallery/promotions, and contact/event inquiry forms. English is primary. The project intentionally excludes ordering, checkout, payments, internal reservations, customer accounts and a general-purpose admin panel.
 
 ## Stack
 
@@ -17,15 +17,15 @@ Bilingual marketing site for G.O.A.T., with a native web menu, a restricted prom
 | --- | --- |
 | `/` | Redirects to `/en` |
 | `/en`, `/es` | Localized home pages |
-| `/menu` | Stable redirect to `/en/menu`; QR destination |
-| `/en/menu`, `/es/menu` | Native restaurant menu and bakery area |
+| `/menu` | Legacy QR destination; redirects to the approved external menu |
+| `/en/menu`, `/es/menu` | Legacy localized menu URLs; redirect to the approved external menu |
 | `/en/promotions`, `/es/promociones` | Active promotions and upcoming events |
 | `/en/book-your-event`, `/es/reserva-tu-evento` | Event inquiry form (availability is confirmed by the restaurant) |
 | `/studio` | Restricted Sanity editing interface |
 | `/api/contact` | Validated contact endpoint |
 | `/api/event-inquiry` | Validated event inquiry endpoint |
 
-The language switch uses real links, maps equivalent pages, and preserves query strings and hashes. Static copy lives in `src/content/en` and `src/content/es`; the live menu remains in typed `src/content/menu.ts`. Phase 1 also includes an isolated Sanity menu schema, query, transformation, and draft seed layer, but no public route reads it yet. Middleware provides the locale to the root layout so `<html lang>` is correct.
+The language switch uses real links, maps equivalent pages, and preserves query strings and hashes. Static copy lives in `src/content/en` and `src/content/es`. As of November 2026, the public restaurant menu is maintained externally; legacy menu code and Sanity menu documents are not shown on the public website. Middleware provides the locale to the root layout so `<html lang>` is correct.
 
 ## Local setup
 
@@ -54,17 +54,15 @@ CONTACT_FROM_EMAIL=G.O.A.T. <website@verified-domain.example>
 
 `NEXT_PUBLIC_RESERVATION_URL` is optional; without it, the CTA goes to the contact form. Do not expose Resend credentials or any Sanity write token. Public Sanity reads need no token when the dataset is public.
 
-## Menu and bakery
+## Public menu and pickup ordering
 
-The web menu is semantic HTML, responsive and indexable. Source copy/prices came from `docs/source-menu/G.O.A.T.pdf`; the original is published at `public/menu/goat-menu.pdf`. Review unresolved content in `docs/menu-content-review.md` before launch. Update products in `src/content/menu.ts`; prices intentionally remain formatted strings.
-
-The PDF contains no bakery catalogue. The bakery area therefore shows approved-style placeholder copy until confirmed products arrive.
-
-### Phase 1 Sanity menu foundation
-
-Sanity now has **Menu Categories** and **Menu Items**. Menu prices are numeric USD amounts, with an optional bilingual price note for entries such as `Inquire / Consultar`. Categories and items need both Sanity publication and **Show on website** enabled for a future public-menu integration. The Phase 1 public menu deliberately remains unchanged and continues to read `src/content/menu.ts`.
-
-The deterministic menu seed writes published canonical documents to the configured Sanity CLI project and dataset. It uses fixed IDs and `createOrReplace`, writes categories before items, and is safe to rerun without duplicates. An administrator can run `npx sanity exec scripts/seed-menu.ts --with-user-token` after reviewing the target printed by the script.
+- Official menu: `https://menu.igniscreativeco.com/`.
+- Pickup ordering: `https://goat-argentine-grill-orem-ut.cloveronline.com/menu/all`.
+- The first-party public menu pages were retired at the restaurant's request to prevent clients from seeing outdated products/prices. `/menu`, `/en/menu` and `/es/menu` now redirect to the official external menu.
+- The outdated static menu PDF was removed from `public/menu`. Existing QR files under `public/qr` encode the stable first-party `/menu` URL, which redirects to the official menu.
+- The old internal menu implementation, content fixtures and Sanity menu documents remain in the repository/dataset for historical reference, but are no longer rendered or editable through the customer-facing Studio navigation.
+- Sanity Studio remains responsible for homepage image slots, marketing promotions and restaurant-run events. See `docs/cms-user-guide.md`.
+- Changes to the official external menu and the Clover merchant logo must be made by the restaurant through those separate services, not in this repository.
 
 ## Sanity setup
 
@@ -90,7 +88,7 @@ The event form is a separate inquiry flow: it sends the requested details as pla
 
 The official circular source is kept at `docs/brand-source/goat-logo.png`. It is a 1024×1024 RGBA PNG with real transparency, so it was copied without pixel changes to `public/brand/goat-logo-transparent.png`; matching SHA-256 hashes confirm that the public asset is byte-identical to the client source. Next.js optimizes delivery through `next/image`.
 
-The logo is used in the navbar, as the primary mark above the localized menu title and as a discreet 80 px footer mark. The existing simplified favicon remains in use because the detailed circular artwork and fine lettering do not reproduce reliably at small favicon sizes. Replace the source and public files together if a final SVG or revised transparent PNG becomes available, keeping the same square proportions and transparent exterior.
+The logo is used in the navbar and footer, and the same brand asset is available for the restaurant's external merchant services. The existing simplified favicon remains in use because the detailed circular artwork and fine lettering do not reproduce reliably at small favicon sizes. Replace the source and public files together if a final SVG or revised transparent PNG becomes available, keeping the same square proportions and transparent exterior.
 
 ## QR generation
 
@@ -101,7 +99,7 @@ $env:NEXT_PUBLIC_SITE_URL='https://your-real-domain.example'
 npm run qr:generate
 ```
 
-This encodes `NEXT_PUBLIC_SITE_URL + /menu`. The committed files encode `https://goatrestaurantsutah.com/menu`. Regenerate them whenever the public site URL changes. Prefer SVG for print, preserve the quiet zone, print at least 25 mm wide, avoid distortion, and test the final physical proof on multiple phones.
+This encodes `NEXT_PUBLIC_SITE_URL + /menu`. The committed files encode `https://goatrestaurantsutah.com/menu`. That stable URL redirects to the current restaurant-managed menu. Regenerate them only if the public site URL changes. Prefer SVG for print, preserve the quiet zone, print at least 25 mm wide, avoid distortion, and test the final physical proof on multiple phones.
 
 ## Validation
 
