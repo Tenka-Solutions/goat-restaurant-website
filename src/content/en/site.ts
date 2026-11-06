@@ -41,7 +41,7 @@ export const en = {
       ["Gathering", "The table as a place for pause, conversation and community."],
     ],
   },
-  flavours: { eyebrow: "What moves us", title: "Flavours with a story.", body: "From grill to oven, an Argentine table with room for everyone.", items: ["Grill", "Empanadas", "Bakery", "Coffee & mate"] },
+  flavours: { eyebrow: "What moves us", title: "Flavours with a story.", body: "From grill to oven, with pasta on Sundays and gnocchi on the 29th.", items: ["Grill", "Empanadas", "Bakery", "Pasta & gnocchi"] },
   story: { eyebrow: "A table to share", title: "Argentine tradition, served our way.", body: "G.O.A.T. brings the character of the grill together with the warmth of a neighbourhood bakery. Every detail invites you to slow down, eat well and feel at home." },
   promotions: { eyebrow: "What is happening", title: "Promotions & events.", viewAll: "See all", empty: "No active promotions or events right now.", promotion: "Promotion", event: "Event" },
   visit: { eyebrow: "Come meet us", title: "Your place at the table.", address: "Address", hours: "Hours", contact: "Contact", hoursComingSoon: "Hours coming soon.", days: ["Monday - Thursday", "Friday - Saturday", "Sunday"] },

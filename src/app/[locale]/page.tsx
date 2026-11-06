@@ -9,7 +9,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params; if (!isLocale(locale)) return {};
   const copy = getDictionary(locale).metadata;
   const canonical = localizedPath(locale, "home");
-  return { title: copy.homeTitle, description: copy.homeDescription, alternates: { canonical, languages: { "en-US": "/en", "es": "/es", "x-default": "/en" } }, openGraph: { type: "website", locale: locale === "en" ? "en_US" : "es_ES", url: canonical, siteName: siteConfig.fullName, title: copy.homeTitle, description: copy.homeDescription, images: [{ url: "/images/hero-grill.png", width: 1792, height: 1024, alt: siteConfig.fullName }] } };
+  return { title: copy.homeTitle, description: copy.homeDescription, alternates: { canonical, languages: { "en-US": "/en", "es": "/es", "x-default": "/en" } }, openGraph: { type: "website", locale: locale === "en" ? "en_US" : "es_ES", url: canonical, siteName: siteConfig.fullName, title: copy.homeTitle, description: copy.homeDescription, images: [{ url: "/images/hero-real.webp", width: 1920, height: 1080, alt: siteConfig.fullName }] } };
 }
 
 export default async function LocalizedHome({ params }: { params: Promise<{ locale: string }> }) { const { locale } = await params; if (!isLocale(locale)) notFound(); return <HomePage locale={locale} />; }

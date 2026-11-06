@@ -28,9 +28,9 @@ describe("homepage image normalization", () => {
 
   it("uses all static fallbacks when the singleton is missing", () => {
     const result = normalizeHomePageImages();
-    expect(result.hero.src).toBe("/images/hero-grill.png");
-    expect(result.flavours.map((image) => image.src)).toEqual(["/images/hero-grill.png", "/images/bakery-table.png", "/images/bakery-table.png", "/images/restaurant-experience.png"]);
-    expect(result.experience.src).toBe("/images/restaurant-experience.png");
+    expect(result.hero.src).toBe("/images/hero-real.webp");
+    expect(result.flavours.map((image) => image.src)).toEqual(["/images/grill-real.webp", "/images/empanadas-real.webp", "/images/bakery-real.webp", "/images/gnocchi-real.webp"]);
+    expect(result.experience.src).toBe("/images/experience-real.webp");
   });
 
   it("falls back only for missing individual slots and semantic images without both alt values", () => {
@@ -41,8 +41,8 @@ describe("homepage image normalization", () => {
       experienceImage: { url: "https://cdn.sanity.io/experience.jpg" },
       experienceImageAlt: { en: "Experience in English", es: "Experiencia en Espanol" },
     });
-    expect(result.hero.src).toBe("/images/hero-grill.png");
-    expect(result.flavours.map((image) => image.src)).toEqual(["/images/hero-grill.png", "https://cdn.sanity.io/card-2.jpg", "/images/bakery-table.png", "/images/restaurant-experience.png"]);
+    expect(result.hero.src).toBe("/images/hero-real.webp");
+    expect(result.flavours.map((image) => image.src)).toEqual(["/images/grill-real.webp", "https://cdn.sanity.io/card-2.jpg", "/images/bakery-real.webp", "/images/gnocchi-real.webp"]);
     expect(result.experience.src).toBe("https://cdn.sanity.io/experience.jpg");
   });
 
@@ -57,7 +57,7 @@ describe("homepage image normalization", () => {
 
   it("uses static fallbacks when the Sanity read fails", async () => {
     const result = await getHomePageImages(async () => { throw new Error("Sanity unavailable"); });
-    expect(result.hero.src).toBe("/images/hero-grill.png");
-    expect(result.experience.src).toBe("/images/restaurant-experience.png");
+    expect(result.hero.src).toBe("/images/hero-real.webp");
+    expect(result.experience.src).toBe("/images/experience-real.webp");
   });
 });

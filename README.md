@@ -62,6 +62,7 @@ CONTACT_FROM_EMAIL=G.O.A.T. <website@verified-domain.example>
 - The outdated static menu PDF was removed from `public/menu`. Existing QR files under `public/qr` encode the stable first-party `/menu` URL, which redirects to the official menu.
 - The old internal menu implementation, content fixtures and Sanity menu documents remain in the repository/dataset for historical reference, but are no longer rendered or editable through the customer-facing Studio navigation.
 - Sanity Studio remains responsible for homepage image slots, marketing promotions and restaurant-run events. See `docs/cms-user-guide.md`.
+- Homepage defaults now use six approved real restaurant photographs from the client's November 2026 media folder (optimized WebP assets in `public/images/`). Each fully populated Sanity image slot can override the corresponding default. The fourth flavour card now features Sunday pasta and gnocchi on the 29th.
 - Changes to the official external menu and the Clover merchant logo must be made by the restaurant through those separate services, not in this repository.
 
 ## Sanity setup
